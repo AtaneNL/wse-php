@@ -1,11 +1,16 @@
 {
-    "name": "robrichards/wse-php",
+    "name": "atanenl/wse-php",
     "description": "Libraries for adding WS-* support to ext/soap in PHP.",
     "authors": [
         {
             "name": "Rob Richards",
             "homepage": "http://www.cdatazone.org/",
             "role": "Main developer"
+        },
+        {
+            "name": "Sernin van de Krol",
+            "homepage": "http://www.atane.nl/",
+            "role": "Small WSA patch"
         }
     ],
     "license": "BSD-3-Clause",
