@@ -103,7 +103,7 @@ class WSASoap
         $nodeAddress = $this->soapDoc->createElementNS(self::WSANS, self::WSAPFX.':Address', $location);
         $nodeFrom = $this->soapDoc->createElementNS(self::WSANS, self::WSAPFX.':From');
         $nodeFrom->appendChild($nodeAddress);
-        $header->appendChild($$nodeFrom);
+        $header->appendChild($nodeFrom);
     }
 
     public function addTo($location)
