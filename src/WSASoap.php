@@ -8,7 +8,7 @@ use RobRichards\XMLSecLibs\XMLSecurityDSig;
 /**
  * WSASoap.php.
  *
- * Copyright (c) 2007-2016, Robert Richards <rrichards@ctindustries.net>.
+ * Copyright (c) 2007-2017, Robert Richards <rrichards@ctindustries.net>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,10 +41,10 @@ use RobRichards\XMLSecLibs\XMLSecurityDSig;
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @author    Robert Richards <rrichards@ctindustries.net>
- * @copyright 2007-2016 Robert Richards <rrichards@ctindustries.net>
+ * @copyright 2007-2017 Robert Richards <rrichards@ctindustries.net>
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  *
- * @version   2.0.1-dev
+ * @version   2.0.3-dev
  */
 class WSASoap
 {
@@ -95,17 +95,21 @@ class WSASoap
         $header->appendChild($nodeAction);
     }
 
-    public function addFrom($location)
+    public function addFrom($location = null)
     {
         /* Add the WSA From */
         $header = $this->locateHeader();
 
-        $nodeAddress = $this->soapDoc->createElementNS(static::WSANS, self::WSAPFX.':Address', $location);
         $nodeFrom = $this->soapDoc->createElementNS(static::WSANS, self::WSAPFX.':From');
-        $nodeFrom->appendChild($nodeAddress);
         $header->appendChild($nodeFrom);
-    }
 
+        if (empty($location)) {
+        	$location = 'http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous';
+        }
+        $nodeAddress = $this->soapDoc->createElementNS(static::WSANS, self::WSAPFX.':Address', $location);
+        $nodeFrom->appendChild($nodeAddress);
+    }
+    
     public function addTo($location)
     {
         /* Add the WSA To */
